@@ -24,3 +24,9 @@ func CommentValue(line string) string {
 	result = strings.TrimSpace(result)
 	return result
 }
+func CommentExampleValue(line string) string {
+	result := strings.TrimSpace(line)
+	result = strings.TrimPrefix(result, "#")
+	//result = strings.TrimSpace(result)
+	return result
+}
