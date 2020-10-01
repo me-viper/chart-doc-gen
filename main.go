@@ -36,6 +36,7 @@ var (
 	docFile    *string = flag.StringP("doc", "d", "doc.yaml", "Path to a project's doc.{json|yaml} info file")
 	valuesFile *string = flag.StringP("values", "v", "values.yaml", "Path to chart values file")
 	tplFile    *string = flag.StringP("template", "t", "readme2.tpl", "Path to a doc template file")
+	outFile    *string = flag.StringP("output", "o", "", "Path to a output file")
 )
 
 func main() {
@@ -114,7 +115,19 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	err = tmpl.Execute(os.Stdout, doc)
+
+	var output *os.File
+
+	if len(*outFile) == 0 {
+		output = os.Stdout
+	} else {
+		output, err = os.OpenFile(*outFile, os.O_CREATE, os.ModePerm)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	err = tmpl.Execute(output, doc)
 	if err != nil {
 		panic(err)
 	}
