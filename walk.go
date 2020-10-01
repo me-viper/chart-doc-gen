@@ -77,7 +77,11 @@ func ParseComment(s string) (string, string) {
 			break
 		}
 		if line != "" {
-			desc = append(desc, line)
+			if !strings.HasPrefix(line, "- ") {
+				desc = append(desc, line)
+			} else {
+				desc = append(desc, fmt.Sprintf(" <br> %s", line[2:]))
+			}
 		}
 	}
 
