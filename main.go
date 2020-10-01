@@ -33,8 +33,8 @@ import (
 )
 
 var (
-	docFile    *string = flag.StringP("doc", "d", "", "Path to a project's doc.{json|yaml} info file")
-	valuesFile *string = flag.StringP("values", "v", "", "Path to chart values file")
+	docFile    *string = flag.StringP("doc", "d", "doc.yaml", "Path to a project's doc.{json|yaml} info file")
+	valuesFile *string = flag.StringP("values", "v", "values.yaml", "Path to chart values file")
 	tplFile    *string = flag.StringP("template", "t", "readme2.tpl", "Path to a doc template file")
 )
 
